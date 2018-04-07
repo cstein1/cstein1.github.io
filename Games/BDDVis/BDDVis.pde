@@ -11,11 +11,11 @@ void settings(){
   size(1400, 800);
 }
 
-void setup() {  
+void setup() {
   PFont font = createFont("comic sans",20);
-  
+
   cp5 = new ControlP5(this);
-  
+
   TreeB = cp5.addTextfield("Tree B")
      .setPosition(width*2/3,height*2/3)
      .setSize(width/3-10,30)
@@ -23,7 +23,7 @@ void setup() {
      .setFocus(true)
      .setAutoClear(false)
      ;
-                 
+
   TreeA = cp5.addTextfield("Tree A")
      .setPosition(width*2/3,height/3)
      .setSize(width/3-10,30)
@@ -36,13 +36,13 @@ void setup() {
      .setSize(80,40)
      .getCaptionLabel().align(ControlP5.CENTER, ControlP5.CENTER)
      ;
-     
+
    cp5.addBang("ReduceTreeB")
      .setPosition(width*2/3,height/3+height/6+height/9)
      .setSize(80,40)
      .getCaptionLabel().align(ControlP5.CENTER, ControlP5.CENTER)
      ;
-     
+
   cp5.addBang("OrJoin")
      .setPosition(width*2/3,height-80)
      .setSize(80,40)
@@ -52,42 +52,42 @@ void setup() {
      .setPosition(width*2/3+100,height-80)
      .setSize(80,40)
      .getCaptionLabel().align(ControlP5.CENTER, ControlP5.CENTER)
-     ;     
+     ;
   cp5.addBang("XorJoin")
      .setPosition(width*2/3+200,height-80)
      .setSize(80,40)
      .getCaptionLabel().align(ControlP5.CENTER, ControlP5.CENTER)
-     ; 
+     ;
   cp5.addBang("ImpliesJoin")
      .setPosition(width*2/3+300,height-80)
      .setSize(80,40)
      .getCaptionLabel().align(ControlP5.CENTER, ControlP5.CENTER)
-     ;     
-     
+     ;
+
   Order = cp5.addTextfield("Order")
      .setPosition(width*2/3,height/3+height/6)
      .setSize(width/3-10,30)
      .setFont(font)
      .setAutoClear(false)
      ;
-  
+
   textFont(font);
-  
+
   String bfa = "(z&x)|(z&!x&y)";//"x||!x";//"(!x&!y&z)|(!x&y&!z)|(x&!y&!z)|(x&y&z)";//
   String bfb = "x&y&z";//"(x||!x)&&(y||!y)&&z";
 
-  
+
   parsedA = new BoolFun(bfa);
   parsedB = new BoolFun(bfb);
-  
+
   treeA = new Tree(parsedA, true);
   treeB = new Tree(parsedB, false);
-  
+
   loading = false;
-  
+
   TreeA.setText(bfa);
   TreeB.setText(bfb);
-  
+
   Order.setText(String.valueOf(parsedA.invars));
   Order.setText(String.valueOf(parsedB.invars));
   change(bfa,bfb,"x");
@@ -104,19 +104,19 @@ void draw() {
   fill(255,0,0);
   float[] gaps = {10};
   text("Bottom",width*2/3,110);
-  dashline(width*2/3+75,105,width*2/3+120,105, gaps);    
+  dashline(width*2/3+75,105,width*2/3+120,105, gaps);
   fill(0,100,255);
   stroke(0,100,255);
   text("Top",width*2/3,135);
-  
+
   if(treeA.trns) {
     fill(255);
     text("TREEA",width/3-width/6-35-textWidth("TreeA"),50);
     text("TREEB",width/3+width/6+35,50);
   }
-  
-  
-  line(width*2/3+75,130,width*2/3+120,130);     
+
+
+  line(width*2/3+75,130,width*2/3+120,130);
   fill(255);
   if(!loading){
     working = true;
@@ -127,57 +127,57 @@ void draw() {
   else{
     displayError();
   }
-} 
+}
 
 void displayError(){
     text("Something Went Wrong",width/4-200,height/2);
     text("Make sure that the following are true:",width/4-200,height/2+20);
     text("1) Variable names are a single letter long (case-sensitive)",width/4-200+50,height/2+40);
     text("2) You are using the available operations in the correct way (!, &&, ||)",width/4-200+50,height/2+60);
-    text("3) Both formulas have the same variables",width/4-200+50,height/2+80);  
+    text("3) Both formulas have the same variables",width/4-200+50,height/2+80);
 }
 
 void change(String newFunA, String newFunB, String _Order){
   loading = true;
   if(!working){
-    
+
     if(newFunA.trim().length() != 0 && newFunB.trim().length() != 0){
       parsedA = new BoolFun(newFunA);
       parsedB = new BoolFun(newFunB);
-      
-      
+
+
       String tmp = _Order;
       String tmp1 = _Order;
-      
+
       for(char i : parsedA.invars){
         if(tmp.indexOf(i) < 0) {
           tmp += i;
         }
       }
       parsedA.invars = tmp.toCharArray();
-      
-      
+
+
       for(char i : parsedB.invars){
         if(tmp1.indexOf(i) < 0) tmp1 += i;
       }
       parsedB.invars = tmp1.toCharArray();
-      
+
       treeA = new Tree(parsedA, true);
       treeB = new Tree(parsedB, false);
       Order.setText(SetAdd(parsedB.invars,parsedA.invars));
     }
-    
+
     if(newFunA.trim().length() != 0)
     {
       parsedA = new BoolFun(newFunA);
       if(_Order.length() == parsedA.invars.length) parsedA.invars = _Order.toCharArray();
       else Order.setText(String.valueOf(parsedA.invars));
-      treeA = new Tree(parsedA, true);      
+      treeA = new Tree(parsedA, true);
     } else {
       treeB.trns = false;
       treeB.Center();
     }
-    
+
     if(newFunB.trim().length() != 0)
     {
       parsedB = new BoolFun(newFunB);
@@ -199,7 +199,7 @@ void keyPressed(){
 }
 
 void enterpress(){
-    try{ 
+    try{
       change(TreeA.getText(), TreeB.getText(), Order.getText());
     } catch (IndexOutOfBoundsException e){
       displayError();
@@ -277,3 +277,6 @@ String SetAdd(String a, String b){
 String SetAdd(char[] a, char[] b){
   return SetAdd(String.valueOf(a),String.valueOf(b));
 }
+
+
+// BoolFun.pde
