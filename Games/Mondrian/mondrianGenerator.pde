@@ -46,7 +46,7 @@ void defineCol(){
   if(col % 5 == 0)
     fill(255,0,0);
   else if(col % 7 == 0)
-    fill(0,255,0);
+    fill(255,255,0);
   else if(col % 9 == 0)
     fill(0,0,255);
   else
