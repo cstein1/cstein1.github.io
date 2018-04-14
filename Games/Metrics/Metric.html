@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0>
+  <style>
+    body {padding: 0; margin: 0;}
+    canvas {
+             position:absolute;
+             top:0;
+             left:0;
+             width:100%;
+             height:100%;
+             z-index:-1;
+             justify-content: center;
+    }
+    .button {
+      -webkit-border-radius: 60;
+      -moz-border-radius: 60;
+      border-radius: 60px;
+      font-family: Arial;
+      color: #ffffff;
+      font-size: 15px;
+      background: #3498db;
+      padding: 4px 24px 4px 24px;
+      border: solid #1f628d 0px;
+      text-decoration: none;
+    }
+
+    .button:hover {
+      background: #3cb0fd;
+      background-image: -webkit-linear-gradient(top, #3cb0fd, #0af3ff);
+      background-image: -moz-linear-gradient(top, #3cb0fd, #0af3ff);
+      background-image: -ms-linear-gradient(top, #3cb0fd, #0af3ff);
+      background-image: -o-linear-gradient(top, #3cb0fd, #0af3ff);
+      background-image: linear-gradient(to bottom, #3cb0fd, #0af3ff);
+      text-decoration: none;
+    }
+    input[type=text] {
+        -webkit-transition: width 0.4s ease-in-out;
+        transition: width 0.4s ease-in-out;
+        border = none;
+    }
+
+    input[type=text]:focus {
+        width: 25%;
+        background-color: lightblue;
+        border = none;
+    }
+    sktch{
+      justify-content: center;
+    }
+  </style>
+  <script src="../../Dependencies/p5.min.js"></script>
+  <script src="../../Dependencies/addons/p5.dom.min.js"></script>
+  <script src="../../Dependencies/addons/p5.sound.min.js"></script>
+  <script src="./sketch.js"></script>
+  <title>Metric Viewer</title>
+
+
+
+</head>
+<body scroll="no" style="overflow: hidden" text=#3498db>
+  <center>
+    <h1><u>Game of Nim</u></h1> <h5>by Charlie Stein cstein1@trinity.edu</h5>
+    <br>
+    <br>
+
+    Press spacebar to restart. <br>
+    Press c to enter custom board mode (then spacebar again to play on your new default board)<br>
+    Press q to clear your custom board, exit custom board mode, and then play with the normal random boards.<br>
+    Press left/right arrow to de/increase number of columns. <br>
+    Press down/up arrow to de/increase number of rows.<br>
+  </center>
+<div>
+  <center>
+  <button onclick="applyMetric(-1)" class="button">Apply 2D Metric</button>
+    <br><br>
+    <input id = "inp" type="text" value="sqrt(x*x+y*y)">
+    <br><br>
+    <script>
+      function applyMetric(n){
+        var metrics = [
+          "sqrt(x*x+y*y)",//euclidean
+          "abs(x)+abs(y)",//taxicab
+          "max(abs(x),abs(y))",//discrete
+           "pow(pow(abs(x),4)+pow(abs(y),4),1.0/4)"
+        ]
+        var input = document.getElementById('inp')
+        if(n==0||n==1||n==2||n==3){
+          input.value = metrics[n]
+        }
+        changeMetric(input.value)
+      }
+    </script>
+  <button onclick="applyMetric(0)" class="button">Euclidean</button>
+  <button onclick="applyMetric(1)" class="button">Taxicab</button>
+  <button onclick="applyMetric(2)" class="button">Discrete</button>
+  <button onclick="applyMetric(3)" class="button">Minkowski 4</button>
+</center></div><br>
+<div id="sktch">
+  <canvas data-processing-sources="sketch.js"></canvas>
+</div>
+</body>
