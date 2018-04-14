@@ -21,6 +21,11 @@ function draw(){
   quadtree(1, 0,maxwid,0,maxhei,0)
 }
 
+String.prototype.replaceAll = function(search, replacement) {
+    var target = this;
+    return target.replace(new RegExp(search, 'g'), replacement);
+};
+
 changeMetric = function(string){
   try{
     met = function(x,y){

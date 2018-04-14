@@ -3,7 +3,9 @@
 <head>
   <meta name="viewport" width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0>
   <style>
-    body {padding: 0; margin: 0;}
+        body {width:600px;
+         margin:0 auto;
+         font-family: Ubuntu, sans-serif;}
     canvas {
              position:absolute;
              top:0;
@@ -61,18 +63,20 @@
 </head>
 <body scroll="no" style="overflow: hidden" text=#3498db>
   <center>
-    <h1><u>Game of Nim</u></h1> <h5>by Charlie Stein cstein1@trinity.edu</h5>
+    <h1><u>See Many Metrics</u></h1> <h5>by Charlie Stein cnstein22 `AT` gmail `DOT` com</h5>
     <br>
-    <br>
+    A circle is defined by the set of points which are a distance of 1 away from a single, given point (in the case of this cite, the origin).
+    Distance is more arbitrary than most people believe.
+    Many are familiar with the Euclidean distance: $\sqrt{x^2+y^2}$; however, there are many more distance functions, also called metrics,
+    which are observed. The taxicab distance is described by $|x|+|y|$; the discrete distance is
+    described by $\max\{|x|,|y|\}$; the Minkowski distance is for p=4 $(|x|^p+|y|^p)^{1/p}$.
 
-    Press spacebar to restart. <br>
-    Press c to enter custom board mode (then spacebar again to play on your new default board)<br>
-    Press q to clear your custom board, exit custom board mode, and then play with the normal random boards.<br>
-    Press left/right arrow to de/increase number of columns. <br>
-    Press down/up arrow to de/increase number of rows.<br>
-  </center>
+    Click on the buttons to see circles in different metrics. The textbox allows you to input your own metrics
+    if you are interested in testing out your own. The textbox compiles to Javascript.
+  </center><br>
 <div>
   <center>
+  <button onclick="grid=!grid" class="button">Toggle Computations</button><br><br>
   <button onclick="applyMetric(-1)" class="button">Apply 2D Metric</button>
     <br><br>
     <input id = "inp" type="text" value="sqrt(x*x+y*y)">
