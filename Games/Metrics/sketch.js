@@ -21,16 +21,20 @@ function draw(){
   quadtree(1, 0,maxwid,0,maxhei,0)
 }
 
+function IsNumeric(val) {
+    return Number(parseFloat(val)) == val;
+}
+
 function sanitizeString(string){
     var mathwords = Object.getOwnPropertyNames(Math)
     mathwords.push("x")
     mathwords.push("y")
     var patt = /(\w)+/g
-    console.log(string)
     stringlst = string.match(patt)
     console.log(stringlst)
     for(var i = 0; i < stringlst.length;i++){
-      if(mathwords.indexOf(stringlst[i])==-1){
+      if(mathwords.indexOf(stringlst[i])==-1 && !IsNumeric(stringlst[i])){
+        console.log(stringlst[i])
         alert("You've input a word that is not in the Javascript Math Library.\n"+
               "Please email me if you have a problem!")
         return
