@@ -5,7 +5,7 @@ var maxhei
 var skt;
 var grid;
 function setup(){
-  skt = createCanvas(screen.width, screen.height);
+  skt = createCanvas(window.innerWidth, window.innerHeight);
   skt.parent("sktch")
   met = euclid
   desiredDepth = 6
@@ -16,18 +16,33 @@ function setup(){
 
 function draw(){
   background(0)
-  translate((width-maxwid)/2,(height-maxhei)*3/5)
+  translate((width-maxwid)/2,(height-maxhei)*10/11)
   scale(window.innerWidth/screen.width)
   quadtree(1, 0,maxwid,0,maxhei,0)
 }
 
-String.prototype.replaceAll = function(search, replacement) {
-    var target = this;
-    return target.replace(new RegExp(search, 'g'), replacement);
-};
+function sanitizeString(string){
+    var mathwords = Object.getOwnPropertyNames(Math)
+    mathwords.push("x")
+    mathwords.push("y")
+    var patt = /(\w)+/g
+    console.log(string)
+    stringlst = string.match(patt)
+    console.log(stringlst)
+    for(var i = 0; i < stringlst.length;i++){
+      if(mathwords.indexOf(stringlst[i])==-1){
+        alert("You've input a word that is not in the Javascript Math Library.\n"+
+              "Please email me if you have a problem!")
+        return
+      }
+    }
+    return string.trim();
+}
 
 changeMetric = function(string){
   try{
+    string = sanitizeString(string)
+    console.log(string)
     met = function(x,y){
       return(eval(string))
     }
