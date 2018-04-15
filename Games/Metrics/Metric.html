@@ -65,13 +65,17 @@
   <center>
     <h1><u>Many Metrics</u></h1> <h5>by Charlie Stein cnstein22 `AT` gmail `DOT` com</h5>
     <br>
-    A circle is defined by the set of points which are a distance of 1 away from a single, given point (in the case of this cite, the origin).
-    Distance is more arbitrary than most people believe.
-    Many are familiar with the Euclidean distance: $\sqrt{x^2+y^2}$; however, there are many more distance functions, also called metrics. The taxicab distance is described by $|x|+|y|$; the discrete distance is
-    described by $\max\{|x|,|y|\}$; the Minkowski distance is for p=4 $(|x|^p+|y|^p)^{1/p}$.
+    A unit circle is defined by the set of points which are a distance of 1 away from the origin.
+    Distance is a very arbitrary concept!
+    
+    Clicking on the buttons will place the given distance function (metric) in the text box and
+    display the unit circle in that metric! Feel free to input your own metric and click the "Apply
+    2D Metric" button. The textbox compiles to Javascript and only accepts variables x, y, and any
+    mathematical function.
 
-    Click on the buttons to see circles in different metrics. The textbox allows you to input your own metrics
-    if you are interested in testing out your own. The textbox compiles to Javascript.
+    The circle is computed using quad trees. To see how I calculate the circle coordinates, hit the
+    "Toggle Computation"
+    buttons.
   </center><br>
 <div>
   <center>

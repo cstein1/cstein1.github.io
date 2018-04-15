@@ -9,15 +9,15 @@ function setup(){
   skt.parent("sktch")
   met = euclid
   desiredDepth = 6
-  maxwid = 200
-  maxhei = 200
+  maxwid = 250
+  maxhei = 250
   grid = false
 }
 
 function draw(){
   background(0)
-  translate((width-maxwid)/2,(height-maxhei)*10/11)
-  scale(window.innerWidth/screen.width)
+  translate((window.innerWidth-maxwid*1.3)/2,(height-maxhei)*8/11)
+  scale(window.innerWidth/1000)
   quadtree(1, 0,maxwid,0,maxhei,0)
 }
 
