@@ -60,29 +60,6 @@ void twoPlayerButton(){
   }
 }
 
-      //if(lv[x][y] == 0){
-      //  //Wall Stuff
-      //  fill(0);
-      //} else if(lv[x][y] == 1){
-      //  //Untouched Path
-      //  fill(255,0,0);
-      //} else if(lv[x][y] == 2){
-      //  //Touched Path
-      //  fill(0,0,255);
-      //} else if(lv[x][y] == 3){
-      //  //Player
-      //  fill(255,0,255);
-      //} else if(lv[x][y] == 4){
-      //  //End Square
-      //  fill(0,255,0);
-      //} else if(lv[x][y] == 5){
-      //  //Player 2
-      //  fill(100,255,150);
-      //} else if(lv[x][y] == 6){
-      //  //End Square 2
-      //  fill(255,255,255);
-      //}
-
 void help(){
   if(!twoPlayer){
     stroke(0);
@@ -215,6 +192,7 @@ void newBoard(){
       numDirs++;
     int soFar = 0;
     int seed = floor(random(0,numDirs+1));
+    
     //if surrounded, done
     if(numDirs == 0){
        lv[maker[0]][maker[1]] = 4;
@@ -272,7 +250,7 @@ void newTwoBoard(){
   lv[pos2[0]][pos2[1]] = 5;
   boolean searching = true;
   boolean searching2 = true;
-  while(searching || searching2){//maker[0]!=wth-2 && maker[1]!=hgt-2){   
+  while(searching || searching2){
       boolean canGoUp, canGoDown, canGoLeft, canGoRight, canGoUp2, canGoDown2, canGoLeft2, canGoRight2;
       int numDirs=0;
       int numDirs2=0;
